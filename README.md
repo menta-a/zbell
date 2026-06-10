@@ -1,14 +1,14 @@
-# zbell
+# asd (INCOMPLETO)
 
 Lector EZSP-over-ASH para NCP Zigbee Silicon Labs (EFR32MG21).
 
 ## Objetivo
 
-Recibir y decodificar mensajes de sensores Zigbee desde un dongle USB (JetHome JetStick Z4) usando solo C++, sin zigpy/bellows, MQTT ni bases de datos.
+Recibir y decodificar mensajes de sensores Zigbee desde un dongle USB (JetHome JetStick Z4) usando solo C++, sin bases de datos.
 
 ## Requisitos
 
-- Raspberry Pi 3B con Raspberry Pi OS 64-bit
+- Raspberry Pi OS 64-bit
 - Dongle JetHome JetStick Z4 (EFR32MG21, firmware EmberZNet NCP)
 - `g++` con soporte C++17
 - Puerto `/dev/ttyUSB0`
@@ -38,7 +38,7 @@ Ejemplo:
 - ✅ Recepción de callbacks (`trustCenterJoin`, `incomingMessage`)
 - ✅ Configuración IAS Zone para sensores PIR/contacto/smoke
 - ✅ Decodificación de mensajes entrantes (ZCL, APS)
-- ✅ Pairing de sensores de temperatura/humedad (Heiman HS1HT-N)
+- ✅ Pairing de sensores de temperatura/humedad (Heiman HS1HT-N), otros sensores y smart plugs (creo)
 - ⚠️ Pairing de PIR (Heiman HS1MS-E) en progreso
 
 ## Licencia
