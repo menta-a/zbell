@@ -40,7 +40,3 @@ Example:
 - ✅ Decoding incoming messages (ZCL, APS)
 - ✅ Pairing temperature/humidity sensors (Heiman HS1HT-N), other sensors, and smart plugs (I think)
 - ⚠️ PIR pairing (Heiman HS1MS-E) in progress
-
-## License
-
-None, steal it if you want, this is communism
