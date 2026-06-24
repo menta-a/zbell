@@ -23,8 +23,9 @@ Monitoriza un smart plug Zigbee (Heiman HS2SK-EF-EU) desde la consola, usando un
 ## Compilar
 
 ```bash
-g++ -std=c++17 -O2 -o zbell main.cpp -lrt
+make
 ```
+NOTA: El `make` del proyecto esta hecho para el codigo con nombre `main.cpp`, por lo que se necesitará modificar el `make` para que pueda funcionar con `main_en.cpp`, o en todo caso reenombrar el codigo.
 
 ## Usar
 
@@ -46,9 +47,6 @@ Toda la lógica ZCL (Zigbee Cluster Library) está implementada desde cero en C+
 
 ## Estructura del código
 
+- `make` — Gestion de dependencias para la compilación
 - `main.cpp` — Implementación completa (~1200 líneas)
 - `plug_data.csv` — Datos eléctricos generados automáticamente
-
-## Licencia
-
-MIT
