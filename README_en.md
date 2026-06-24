@@ -48,6 +48,6 @@ All ZCL (Zigbee Cluster Library) logic is implemented from scratch in C++.
 
 ## Code structure
 
-- `make` — Dependency management for compilation
+- `Makefile` — Dependency management for compilation
 - `main.cpp` — Complete implementation (~1200 lines)
 - `plug_data.csv` — Auto-generated electrical data log
