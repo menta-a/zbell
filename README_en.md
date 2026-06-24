@@ -1,3 +1,4 @@
+[Spanish](README.md)/[English](README_en.md)
 
 # zbell — Zigbee Smart Plug Monitor
 
@@ -23,8 +24,9 @@ Monitor a Zigbee smart plug (Heiman HS2SK-EF-EU) from the command line, using an
 ## Build
 
 ```bash
-g++ -std=c++17 -O2 -o zbell main.cpp -lrt
+make
 ```
+NOTE: `Makefile` is designed for the code named `main.cpp`, so it will be need to modified to work with `main_en.cpp`, or alternatively, rename the code to `main.cpp`.
 
 ## Usage
 
@@ -46,9 +48,6 @@ All ZCL (Zigbee Cluster Library) logic is implemented from scratch in C++.
 
 ## Code structure
 
+- `make` — Dependency management for compilation
 - `main.cpp` — Complete implementation (~1200 lines)
 - `plug_data.csv` — Auto-generated electrical data log
-
-## License
-
-MIT
