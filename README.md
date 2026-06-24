@@ -1,42 +1,54 @@
-# asd (INCOMPLETO)
 
-Lector EZSP-over-ASH para NCP Zigbee Silicon Labs (EFR32MG21).
+# zbell — Zigbee Smart Plug Monitor
 
-## Objetivo
-
-Recibir y decodificar mensajes de sensores Zigbee desde un dongle USB (JetHome JetStick Z4) usando solo C++, sin bases de datos.
-
-## Requisitos
-
-- Raspberry Pi OS 64-bit
-- Dongle JetHome JetStick Z4 (EFR32MG21, firmware EmberZNet NCP)
-- `g++` con soporte C++17
-- Puerto `/dev/ttyUSB0`
-
-## Compilación
-
-```bash
-make
-```
-
-## Uso
-
-```bash
-./zigbee_reader [puerto] [segundos_pairing]
-```
-
-Ejemplo:
-```bash
-./zigbee_reader /dev/ttyUSB0 180
-```
+Monitoriza un smart plug Zigbee (Heiman HS2SK-EF-EU) desde la consola, usando un dongle EFR32MG21 (JetHome JetStick Z4) con el protocolo EZSP v14.
 
 ## Estado actual
 
-- ✅ Comunicación ASH EZSP v13 establecida
-- ✅ Negociación de versión EZSP
-- ✅ Formación de red Zigbee (canal 26, PAN ID 0x2D3F)
-- ✅ Recepción de callbacks (`trustCenterJoin`, `incomingMessage`)
-- ✅ Configuración IAS Zone para sensores PIR/contacto/smoke
-- ✅ Decodificación de mensajes entrantes (ZCL, APS)
-- ✅ Pairing de sensores de temperatura/humedad (Heiman HS1HT-N), otros sensores y smart plugs (creo)
-- ⚠️ Pairing de PIR (Heiman HS1MS-E) en progreso
+- ✅ Lectura de voltaje, corriente y potencia desde el cluster ElectricalMeasurement (0x0B04)
+- ✅ Lectura del estado OnOff (cluster 0x0006)
+- ✅ Coeficientes de medición cargados automáticamente desde el dispositivo
+- ✅ Logging a CSV (plug_data.csv)
+- ✅ Descubrimiento y emparejamiento de dispositivos
+- ❌ Encendido/apagado remoto — **no implementado**
+- ❌ Lectura de atributos de sensores (temperatura, humedad, IAS Zone) — **no implementado**
+- ❌ Soporte para múltiples dispositivos simultáneos — pendiente
+
+## Requisitos
+
+- Raspberry Pi 3B (o similar) con Raspberry Pi OS 64-bit
+- Dongle EFR32MG21 con firmware EZSP v14 (Ej: JetHome JetStick Z4)
+- Smart plug compatible con Zigbee (probado con Heiman HS2SK-EF-EU)
+
+## Compilar
+
+```bash
+g++ -std=c++17 -O2 -o zbell main.cpp -lrt
+```
+
+## Usar
+
+```bash
+./zbell                       # modo normal (solo datos eléctricos)
+./zbell --verbose             # modo debug (todo el tráfico EZSP)
+./zbell /dev/ttyUSB0          # puerto personalizado
+```
+
+El programa abre la red por 180 segundos para emparejar dispositivos.
+Presiona el botón pairing del smart plug (~5s). Tras emparejarse,
+los datos eléctricos se muestran cada ~5 segundos y se guardan en `plug_data.csv`.
+
+## Cómo funciona
+
+`zbell` implementa comunicación directa con el dongle Zigbee a través del
+protocolo ASH (serial) + EZSP v14. No utiliza Zigbee2MQTT, zigpy ni Home Assistant.
+Toda la lógica ZCL (Zigbee Cluster Library) está implementada desde cero en C++.
+
+## Estructura del código
+
+- `main.cpp` — Implementación completa (~1200 líneas)
+- `plug_data.csv` — Datos eléctricos generados automáticamente
+
+## Licencia
+
+MIT
