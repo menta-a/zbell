@@ -1,3 +1,4 @@
+[Spanish](README.md)/[English](README_en.md)
 
 # zbell — Zigbee Smart Plug Monitor
 
@@ -25,7 +26,7 @@ Monitoriza un smart plug Zigbee (Heiman HS2SK-EF-EU) desde la consola, usando un
 ```bash
 make
 ```
-NOTA: El `make` del proyecto esta hecho para el codigo con nombre `main.cpp`, por lo que se necesitará modificar el `make` para que pueda funcionar con `main_en.cpp`, o en todo caso reenombrar el codigo.
+NOTA: `Makefile` esta hecho para el codigo con nombre `main.cpp`, por lo que se necesitará modificarlo para que pueda funcionar con `main_en.cpp`, o en todo caso reenombrar el codigo a `main.cpp`.
 
 ## Usar
 
